@@ -22,6 +22,22 @@ NSString* defaultSuiteName = nil;
 
 RCT_EXPORT_MODULE()
 
+RCT_EXPORT_METHOD(setObjectForKey:(id)object key:(NSString *)key
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject) {
+    
+    [[self getDefaultUser] setObject:object forKey:key];
+    
+    resolve([NSNull null]);
+}
+
+RCT_EXPORT_METHOD(objectForKey:(NSString *)key
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject) {
+    
+    resolve([[self getDefaultUser] objectForKey:key]);
+}
+
 RCT_EXPORT_METHOD(setName:(NSString *)name
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(__unused RCTPromiseRejectBlock)reject)

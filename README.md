@@ -40,10 +40,12 @@ All data are stored as String, in case more complex data structure is needed, se
 
 ## Usage
 ```javascript
-import DefaultPreference from 'rn-user-defaults';
+import RNUserDefaults from 'rn-user-defaults';
 
-DefaultPreference.get('key').then(function(value) {console.log(value)});
-DefaultPreference.set('key', 'value').then(function() {console.log('done')});
+RNUserDefaults.set('key', 'value').then(function() {console.log('done')}); // done
+RNUserDefaults.get('key').then(function(value) {console.log(value)}); // value
+RNUserDefaults.setObjectForKey({ 'dog': 1 }, 'objKey').then(function() {console.log('done')}); // done
+RNUserDefaults.objectForKey('objKey').then(function(value) {console.log(value)}); // { dog: 1 }
 ```
 
 ## API
@@ -51,6 +53,8 @@ DefaultPreference.set('key', 'value').then(function() {console.log('done')});
 ```haxe
 function get(key:String):Promise<String>;
 function set(key:String, value:String):Promise<Void>;
+function setObjectForKey(data:Object, key:String):Promise<Void>;
+function objectForKey(key:String):Promise<Object>;
 function clear(key:String):Promise<Void>;
 function getMultiple(keys:Array<String>):Promise<Array<String>>;
 function setMultiple(data:Object):Promise<Void>;
@@ -73,7 +77,7 @@ the following line:
 ```js
 import { Platform } from 'react-native';
 // ...
-if (Platform.OS === 'android') DefaultPreference.setName('NativeStorage');
+if (Platform.OS === 'android') RNUserDefaults.setName('NativeStorage');
 ```
 
 ### iOS
