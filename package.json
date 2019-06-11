@@ -1,0 +1,20 @@
+{
+  "name": "rn-user-defaults",
+  "version": "1.0.1",
+  "description": "Use UserDefaults (iOS) with React Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "NSUserDefaults",
+    "user defaults"
+  ],
+  "author": "djorkaeffalexandre",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": ">=0.47.0"
+  },
+  "homepage": "https://github.com/djorkaeffalexandre/rn-user-defaults"
+}
