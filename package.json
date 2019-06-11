@@ -1,6 +1,6 @@
 {
   "name": "rn-user-defaults",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "Use UserDefaults (iOS) with React Native",
   "main": "index.js",
   "scripts": {
