@@ -2,7 +2,7 @@
 # rn-user-defaults
 
 
-Use `UserDefaults` (iOS) with React Native.
+Use `UserDefaults` (iOS) with React Native and `AsyncStorage` on AndroidOS.
 All data are stored as String, in case more complex data structure is needed, serialize it (e.g. JSON).
 
 ## Getting started
@@ -56,30 +56,7 @@ function set(key:String, value:String):Promise<Void>;
 function setObjectForKey(data:Object, key:String):Promise<Void>;
 function objectForKey(key:String):Promise<Object>;
 function clear(key:String):Promise<Void>;
-function getMultiple(keys:Array<String>):Promise<Array<String>>;
-function setMultiple(data:Object):Promise<Void>;
-function clearMultiple(keys:Array<String>):Promise<Void>;
-function getAll():Promise<Object>;
-function clearAll():Promise<Void>;
 
 /** Gets and sets the current user default suite name (ios) **/
-function getName():Promise<String>;
 function setName(name:String):Promise<Void>;
 ```
-
-## Cordova Native Storage Compatibility
-This module is compatible with cordova-plugin-native-storage.
-
-### Android
-You need to use the same SharedPreference as in the cordova plugin, to do so add
-the following line:
-
-```js
-import { Platform } from 'react-native';
-// ...
-if (Platform.OS === 'android') RNUserDefaults.setName('NativeStorage');
-```
-
-### iOS
-You don't need to change the name, as cordova-plugin-native-storage uses the default
-value.
