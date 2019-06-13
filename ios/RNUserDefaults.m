@@ -69,6 +69,16 @@ RCT_EXPORT_METHOD(clear:(NSString *)key
     resolve([NSNull null]);
 }
 
+RCT_EXPORT_METHOD(clearMultiple:(NSArray *)keys
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject)
+{
+    for(NSString *key in keys) {
+        [[self getDefaultUser] removeObjectForKey:key];
+    }
+    resolve([NSNull null]);
+}
+
 RCT_EXPORT_METHOD(clearAll:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
