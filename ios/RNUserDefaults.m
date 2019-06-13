@@ -22,6 +22,15 @@ NSString* defaultSuiteName = nil;
 
 RCT_EXPORT_MODULE()
 
+RCT_EXPORT_METHOD(setObjectForKey:(NSString *)key object:object
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(__unused RCTPromiseRejectBlock)reject) {
+
+    [[self getDefaultUser] setObject:object forKey:key];
+    
+    resolve([NSNull null]);
+}
+
 RCT_EXPORT_METHOD(objectForKey:(NSString *)key
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(__unused RCTPromiseRejectBlock)reject) {
@@ -58,6 +67,13 @@ RCT_EXPORT_METHOD(clear:(NSString *)key
 {
     [[self getDefaultUser] removeObjectForKey:key];
     resolve([NSNull null]);
+}
+
+RCT_EXPORT_METHOD(clearAll:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject)
+{
+    NSArray *keys = [[[self getDefaultUser] dictionaryRepresentation] allKeys];
+    [self clearMultiple:keys resolve:resolve reject:reject];
 }
 
 @end

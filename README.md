@@ -31,6 +31,7 @@ import RNUserDefaults from 'rn-user-defaults';
 
 RNUserDefaults.set('key', 'value').then(function() {console.log('done')}); // done
 RNUserDefaults.get('key').then(function(value) {console.log(value)}); // value
+RNUserDefaults.setObjectForKey('objKey', { dog: 1 }).then(function() {console.log('done')}); // done
 RNUserDefaults.objectForKey('objKey').then(function(value) {console.log(value)}); // { dog: 1 }
 ```
 
@@ -39,8 +40,10 @@ RNUserDefaults.objectForKey('objKey').then(function(value) {console.log(value)})
 ```haxe
 function get(key:String):Promise<String>;
 function set(key:String, value:String):Promise<Void>;
+function setObjectForKey(key:String, value:Object):Promise<Void>;
 function objectForKey(key:String):Promise<Object>;
 function clear(key:String):Promise<Void>;
+function clearAll():Promise<Void>;
 
 /** Set the current user default suite name (ios) **/
 function setName(name:String):Promise<Void>;
