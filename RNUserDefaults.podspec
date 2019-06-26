@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license        = package['license']
   s.author         = package['author']
   s.homepage       = package['homepage']
-  s.source         = { :git => 'https://github.com/djorkaeffalexandre/rn-user-defaults.git' }
+  s.source         = { :git => 'https://github.com/RocketChat/rn-user-defaults.git' }
 
   s.requires_arc   = true
   s.platform       = :ios, '7.0'

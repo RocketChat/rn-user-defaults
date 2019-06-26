@@ -16,5 +16,5 @@
   "peerDependencies": {
     "react-native": ">=0.47.0"
   },
-  "homepage": "https://github.com/djorkaeffalexandre/rn-user-defaults"
+  "homepage": "https://github.com/RocketChat/rn-user-defaults.git"
 }
