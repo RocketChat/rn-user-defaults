@@ -1,7 +1,7 @@
 
 # rn-user-defaults
 
-Use `UserDefaults` (iOS) with React Native and `AsyncStorage` on AndroidOS.
+Use `UserDefaults` (iOS) with React Native and `SharedPreferences` on AndroidOS.
 
 ## Getting started
 
@@ -23,7 +23,39 @@ Use `UserDefaults` (iOS) with React Native and `AsyncStorage` on AndroidOS.
 
 #### Android
 
-Not need setup.
+- Edit `android/settings.gradle` and add the following
+
+```
+include ':app', ':rn-user-defaults'
+
+project(':rn-user-defaults').projectDir = new File(rootProject.projectDir, '../node_modules/rn-user-defaults/android')
+```
+
+- Edit `android/app/build.gradle` and add the following line before the react section in dependencies
+
+```
+dependencies {
+    ...
+    implementation project(':rn-user-defaults')
+    implementation "com.facebook.react:react-native:+"
+}
+```
+
+- Add these lines to `MainApplication.java`
+
+```
+...
+import chat.rocket.userdefaults;
+...
+@Override
+protected List<ReactPackage> getPackages() {
+    @SuppressWarnings("UnnecessaryLocalVariable")
+    List<ReactPackage> packages = new PackageList(this).getPackages();
+    ...
+    packages.add(new RNUserDefaultsPackage());
+    return packages;
+}
+```
 
 ## Usage
 ```javascript
@@ -45,6 +77,9 @@ function objectForKey(key:String):Promise<Object>;
 function clear(key:String):Promise<Void>;
 function clearAll():Promise<Void>;
 
-/** Set the current user default suite name (ios) **/
+/**
+  iOS = [[NSUserDefaults alloc] initWithSuiteName:name];
+  Android = getReactApplicationContext().getSharedPreferences(name, Context.MODE_PRIVATE);
+**/
 function setName(name:String):Promise<Void>;
 ```
