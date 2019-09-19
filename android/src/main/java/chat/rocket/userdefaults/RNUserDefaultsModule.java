@@ -1,5 +1,6 @@
 package chat.rocket.userdefaults;
 
+import android.util.Log;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -19,6 +20,7 @@ import java.util.Map;
 
 public class RNUserDefaultsModule extends ReactContextBaseJavaModule {
   private String preferencesName = "react-native";
+  private String contextName = null;
 
   private final ReactApplicationContext reactContext;
 
@@ -67,12 +69,28 @@ public class RNUserDefaultsModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
+  public void setPackageContext(String contextName, Promise promise) {
+    this.contextName = contextName;
+    promise.resolve(null);
+  }
+
+  @ReactMethod
   public void getName(Promise promise) {
     promise.resolve(preferencesName);
   }
 
   private SharedPreferences getPreferences() {
-    return getReactApplicationContext().getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
+    Context context = getReactApplicationContext();
+    if (contextName != null) {
+      try {
+        context = context.createPackageContext(contextName, Context.CONTEXT_INCLUDE_CODE);
+      } catch (Exception e) {
+        String error = e.getMessage();
+        Log.d("RNUserDefaults", error);
+        return context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
+      }
+    }
+    return context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
   }
   private SharedPreferences.Editor getEditor() {
     return getPreferences().edit();

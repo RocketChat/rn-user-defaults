@@ -82,4 +82,9 @@ function clearAll():Promise<Void>;
   Android = getReactApplicationContext().getSharedPreferences(name, Context.MODE_PRIVATE);
 **/
 function setName(name:String):Promise<Void>;
+
+/**
+  You can set a context to you sharedPreferences (Android)
+**/
+function setPackageContext(context:String):Promise<Void>;
 ```

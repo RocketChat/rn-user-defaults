@@ -3,7 +3,10 @@ import { NativeModules, Platform } from 'react-native';
 const { RNUserDefaults: NativeUserDefaults } = NativeModules;
 
 const RNUserDefaults = Platform.select({
-  ios: NativeUserDefaults,
+  ios: {
+    ...NativeUserDefaults,
+    setPackageContext: () => Promise.resolve()
+  },
   android: {
     ...NativeUserDefaults,
     setObjectForKey: (key, value) => {
