@@ -84,7 +84,7 @@ String exampleString = sharedPreferences.getString("STRING_KEY", "");
 ```objective-c
 #import "RNUserDefaults.h"
 
-NSDictionary *exampleObject = [[RNUserDefaults getDefaultUser] objectForKey:host];
+NSDictionary *exampleObject = [[RNUserDefaults getDefaultUser] objectForKey:@"OBJECT_KEY"];
 ```
 
 ## API
