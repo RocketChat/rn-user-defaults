@@ -67,6 +67,26 @@ RNUserDefaults.setObjectForKey('objKey', { dog: 1 }).then(function() {console.lo
 RNUserDefaults.objectForKey('objKey').then(function(value) {console.log(value)}); // { dog: 1 }
 ```
 
+## Static methods
+
+Now you can use static methods to access current SharedPreferences or UserDefaults classes on native modules.
+
+#### Android
+```java
+import android.content.SharedPreferences;
+import chat.rocket.userdefaults.RNUserDefaultsModule;
+
+SharedPreferences sharedPreferences = RNUserDefaultsModule.getPreferences();
+String exampleString = sharedPreferences.getString("STRING_KEY", "");
+```
+
+#### iOS
+```objective-c
+#import "RNUserDefaults.h"
+
+NSDictionary *exampleObject = [[RNUserDefaults getDefaultUser] objectForKey:host];
+```
+
 ## API
 
 ```haxe

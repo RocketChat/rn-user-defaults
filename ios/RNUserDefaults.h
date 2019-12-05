@@ -9,6 +9,6 @@
 #endif
 
 @interface RNUserDefaults : NSObject <RCTBridgeModule>
-
++ (NSUserDefaults *)getDefaultUser;
 @end
   

@@ -19,14 +19,16 @@ import com.facebook.react.bridge.WritableMap;
 import java.util.Map;
 
 public class RNUserDefaultsModule extends ReactContextBaseJavaModule {
-  private String preferencesName = "react-native";
-  private String contextName = null;
+  private static String preferencesName = "react-native";
+  private static String contextName = null;
+  private static Context context;
 
   private final ReactApplicationContext reactContext;
 
   public RNUserDefaultsModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
+    this.context = getReactApplicationContext();
   }
 
   @Override
@@ -79,11 +81,11 @@ public class RNUserDefaultsModule extends ReactContextBaseJavaModule {
     promise.resolve(preferencesName);
   }
 
-  private SharedPreferences getPreferences() {
-    Context context = getReactApplicationContext();
+  public static SharedPreferences getPreferences() {
     if (contextName != null) {
       try {
-        context = context.createPackageContext(contextName, Context.CONTEXT_INCLUDE_CODE);
+        return context.createPackageContext(contextName, Context.CONTEXT_INCLUDE_CODE)
+          .getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
       } catch (Exception e) {
         String error = e.getMessage();
         Log.d("RNUserDefaults", error);
@@ -92,6 +94,7 @@ public class RNUserDefaultsModule extends ReactContextBaseJavaModule {
     }
     return context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
   }
+
   private SharedPreferences.Editor getEditor() {
     return getPreferences().edit();
   }
