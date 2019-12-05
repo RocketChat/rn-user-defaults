@@ -1,7 +1,7 @@
 {
   "name": "rn-user-defaults",
-  "version": "1.5.0",
-  "description": "Use `UserDefaults` (iOS) with React Native and `AsyncStorage` on AndroidOS.",
+  "version": "1.6.0",
+  "description": "Use `UserDefaults` (iOS) with React Native and `SharedPreferences` on AndroidOS.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
