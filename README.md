@@ -78,6 +78,12 @@ import chat.rocket.userdefaults.RNUserDefaultsModule;
 
 SharedPreferences sharedPreferences = RNUserDefaultsModule.getPreferences();
 String exampleString = sharedPreferences.getString("STRING_KEY", "");
+
+SharedPreferences sharedPreferences1 = RNUserDefaultsModule.getPreferences(reactApplicationContext);
+String exampleString1 = sharedPreferences1.getString("STRING_KEY", "");
+
+SharedPreferences sharedPreferences2 = RNUserDefaultsModule.getPreferences(reactApplicationContext, contextName, preferencesName);
+String exampleString2 = sharedPreferences2.getString("STRING_KEY", "");
 ```
 
 #### iOS

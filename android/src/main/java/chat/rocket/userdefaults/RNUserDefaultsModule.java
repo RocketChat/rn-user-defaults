@@ -21,14 +21,12 @@ import java.util.Map;
 public class RNUserDefaultsModule extends ReactContextBaseJavaModule {
   private static String preferencesName = "react-native";
   private static String contextName = null;
-  private static Context context;
 
-  private final ReactApplicationContext reactContext;
+  private static ReactApplicationContext reactContext;
 
   public RNUserDefaultsModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
-    this.context = getReactApplicationContext();
   }
 
   @Override
@@ -84,15 +82,33 @@ public class RNUserDefaultsModule extends ReactContextBaseJavaModule {
   public static SharedPreferences getPreferences() {
     if (contextName != null) {
       try {
-        return context.createPackageContext(contextName, Context.CONTEXT_INCLUDE_CODE)
+        return reactContext.createPackageContext(contextName, Context.CONTEXT_INCLUDE_CODE)
           .getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
       } catch (Exception e) {
         String error = e.getMessage();
         Log.d("RNUserDefaults", error);
-        return context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
+        return reactContext.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
       }
     }
-    return context.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
+    return reactContext.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
+  }
+
+  public static SharedPreferences getPreferences(ReactApplicationContext reactApplicationContext) {
+    return reactApplicationContext.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
+  }
+
+  public static SharedPreferences getPreferences(ReactApplicationContext reactApplicationContext, String preferencesName, String contextName) {
+    if (contextName != null) {
+      try {
+        return reactApplicationContext.createPackageContext(contextName, Context.CONTEXT_INCLUDE_CODE)
+          .getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
+      } catch (Exception e) {
+        String error = e.getMessage();
+        Log.d("RNUserDefaults", error);
+        return reactApplicationContext.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
+      }
+    }
+    return reactApplicationContext.getSharedPreferences(preferencesName, Context.MODE_PRIVATE);
   }
 
   private SharedPreferences.Editor getEditor() {
