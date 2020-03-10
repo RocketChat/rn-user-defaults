@@ -2,18 +2,17 @@
 
 @implementation RNUserDefaults
 
-NSString* defaultSuiteName = nil;
-
 - (dispatch_queue_t)methodQueue
 {
     return dispatch_get_main_queue();
 }
 
-+ (NSUserDefaults *) getDefaultUser {
-    if(defaultSuiteName == nil){
++ (NSUserDefaults *)getDefaultUser {
+    NSString *suiteName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"SuiteName"];
+    if(suiteName == nil){
         return [NSUserDefaults standardUserDefaults];
     } else {
-        return [[NSUserDefaults alloc] initWithSuiteName:defaultSuiteName];
+        return [[NSUserDefaults alloc] initWithSuiteName:suiteName];
     }
 }
 
@@ -33,14 +32,6 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key
                   reject:(__unused RCTPromiseRejectBlock)reject) {
     
     resolve([[RNUserDefaults getDefaultUser] objectForKey:key]);
-}
-
-RCT_EXPORT_METHOD(setName:(NSString *)name
-                  resolve:(RCTPromiseResolveBlock)resolve
-                  reject:(__unused RCTPromiseRejectBlock)reject)
-{
-    defaultSuiteName = name;
-    resolve([NSNull null]);
 }
 
 RCT_EXPORT_METHOD(get:(NSString *)key

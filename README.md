@@ -93,6 +93,13 @@ String exampleString2 = sharedPreferences2.getString("STRING_KEY", "");
 NSDictionary *exampleObject = [[RNUserDefaults getDefaultUser] objectForKey:@"OBJECT_KEY"];
 ```
 
+### Set a SuiteName on iOS
+Add the follow code to your Info.plist
+```
+<key>SuiteName</key>
+<string>your.group.name</string>
+```
+
 ## API
 
 ```haxe
@@ -104,7 +111,6 @@ function clear(key:String):Promise<Void>;
 function clearAll():Promise<Void>;
 
 /**
-  iOS = [[NSUserDefaults alloc] initWithSuiteName:name];
   Android = getReactApplicationContext().getSharedPreferences(name, Context.MODE_PRIVATE);
 **/
 function setName(name:String):Promise<Void>;

@@ -5,7 +5,8 @@ const { RNUserDefaults: NativeUserDefaults } = NativeModules;
 const RNUserDefaults = Platform.select({
   ios: {
     ...NativeUserDefaults,
-    setPackageContext: () => Promise.resolve()
+    setPackageContext: () => Promise.resolve(),
+    setName: () => Promise.resolve()
   },
   android: {
     ...NativeUserDefaults,
