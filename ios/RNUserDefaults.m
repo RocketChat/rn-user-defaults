@@ -8,7 +8,7 @@
 }
 
 + (NSUserDefaults *)getDefaultUser {
-    NSString *suiteName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"SuiteName"];
+    NSString *suiteName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"AppGroup"];
     if(suiteName == nil){
         return [NSUserDefaults standardUserDefaults];
     } else {

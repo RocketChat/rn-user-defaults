@@ -93,10 +93,10 @@ String exampleString2 = sharedPreferences2.getString("STRING_KEY", "");
 NSDictionary *exampleObject = [[RNUserDefaults getDefaultUser] objectForKey:@"OBJECT_KEY"];
 ```
 
-### Set a SuiteName on iOS
+### Set a AppGroup on iOS
 Add the follow code to your Info.plist
 ```
-<key>SuiteName</key>
+<key>AppGroup</key>
 <string>your.group.name</string>
 ```
 
