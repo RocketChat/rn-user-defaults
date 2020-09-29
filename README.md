@@ -1,18 +1,29 @@
 
 # rn-user-defaults
 
-Use `UserDefaults` (iOS) with React Native and `SharedPreferences` on AndroidOS.
+Use `UserDefaults` (iOS) and `SharedPreferences` (AndroidOS) with React Native, this can help you to share credentials between apps or between app and extensions on iOS.
 
 ## Getting started
 
 `$ npm install rn-user-defaults --save`
 
-### Mostly automatic installation
+or 
+
+`$ yarn add rn-user-defaults`
+
+If you are using `React Native 0.60.+` go to the folder **your-project/ios** and run `pod install`, and you're done. 
+
+If not, use one of the following method to link.
+
+### Mostly automatic with `react-native link`
+
+If you are using `React Native <= 0.59.X`, link the native project:
 
 `$ react-native link rn-user-defaults`
 
 ### Manual installation
 
+If you are using `React Native <= 0.59.X` and `react-native link` don't work for you:
 
 #### iOS
 
@@ -58,6 +69,7 @@ protected List<ReactPackage> getPackages() {
 ```
 
 ## Usage
+
 ```javascript
 import RNUserDefaults from 'rn-user-defaults';
 
@@ -72,6 +84,7 @@ RNUserDefaults.objectForKey('objKey').then(function(value) {console.log(value)})
 Now you can use static methods to access current SharedPreferences or UserDefaults classes on native modules.
 
 #### Android
+
 ```java
 import android.content.SharedPreferences;
 import chat.rocket.userdefaults.RNUserDefaultsModule;
@@ -120,3 +133,13 @@ function setName(name:String):Promise<Void>;
 **/
 function setPackageContext(context:String):Promise<Void>;
 ```
+
+## License
+
+```
+MIT License
+
+Copyright (c) 2019 Djorkaeff Alexandre
+```
+
+See the full [licence file](https://github.com/RocketChat/rn-user-defaults/blob/master/LICENSE).
