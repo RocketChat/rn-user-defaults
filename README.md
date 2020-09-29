@@ -36,7 +36,7 @@ If you are using `React Native <= 0.59.X` and `react-native link` don't work for
 
 - Edit `android/settings.gradle` and add the following
 
-```
+```gradle
 include ':app', ':rn-user-defaults'
 
 project(':rn-user-defaults').projectDir = new File(rootProject.projectDir, '../node_modules/rn-user-defaults/android')
@@ -44,7 +44,7 @@ project(':rn-user-defaults').projectDir = new File(rootProject.projectDir, '../n
 
 - Edit `android/app/build.gradle` and add the following line before the react section in dependencies
 
-```
+```gradle
 dependencies {
     ...
     implementation project(':rn-user-defaults')
@@ -54,7 +54,7 @@ dependencies {
 
 - Add these lines to `MainApplication.java`
 
-```
+```java
 ...
 import chat.rocket.userdefaults;
 ...
@@ -70,7 +70,7 @@ protected List<ReactPackage> getPackages() {
 
 ## Usage
 
-```javascript
+```js
 import RNUserDefaults from 'rn-user-defaults';
 
 RNUserDefaults.set('key', 'value').then(function() {console.log('done')}); // done
